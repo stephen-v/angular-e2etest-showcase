@@ -1,0 +1,26 @@
+{
+  "name": "angularjs-test",
+  "description": "angularjs-test",
+  "main": "",
+  "authors": [
+    "wangsiyu <wangsiyu@6starhome.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angularjs-test"
+  ],
+  "moduleType": [],
+  "homepage": "http://www.stephen.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.2",
+    "angular-mocks": "^1.5.2"
+  }
+}
