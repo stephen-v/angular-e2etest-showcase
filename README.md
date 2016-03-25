@@ -1,4 +1,4 @@
-# angular单元测试与集成测试实践
+# angular单元测试与自动化UI测试实践
 >关于本文：介绍通过karma与jsmine框架对angular开发的应用程序进行单元与E2E测试。
 
 ## 一、先决条件
@@ -15,7 +15,7 @@
 
 ## 三、安装框架
 ### 1、安装前端框架
-项目中的前端框架主要为angularjs相关的框架,为了安装框架方便可安装bower包管理器。
+项目中所用框架是angularjs,为了安装框架方便可安装bower包管理器。
 #### 1) 安装bower包管理器
 在webstorm的terminal中执行脚本
 ```
@@ -27,10 +27,7 @@ npm install bower -save
 bower init
 ```
 #### 3) 安装angular等框架
-除了项目要用到的angular框架外还需要安装angular-mocks框架
-```
-bower install bootstrap -save
-```
+angular、angular-mocks框架
 
 ```
 bower install angular -save
