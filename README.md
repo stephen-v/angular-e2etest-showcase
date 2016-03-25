@@ -1,20 +1,20 @@
 # angular单元测试与集成测试实践
 >关于本文：介绍通过karma与jsmine框架对angular开发的应用程序进行单元与E2E测试。
 
-## 先决条件
+## 一、先决条件
 * nodejs
 * webstorm
 
-## 创建项目
+## 二、创建项目
 
-### webstorm中创建空白web项目
+### 1、webstorm中创建空白web项目
 ![空白项目](http://7xlh63.com1.z0.glb.clouddn.com/bef67a6853ce62867604126f123d68aa.png)
 
-### 创建html、js文件夹
+### 2、创建html、js文件夹
 在项目中创建2个文件夹分别用于存放项目中用到的html、js文件。
 
-## 安装框架
-### 安装前端框架
+## 三、安装框架
+### 1、安装前端框架
 项目中的前端框架主要为angularjs相关的框架,为了安装框架方便可安装bower包管理器。
 #### 1) 安装bower包管理器
 在webstorm的terminal中执行脚本
@@ -40,7 +40,7 @@ bower install angular -save
 bower install angular-mocks -save
 ```
 
-### 安装服务器端框架
+### 2、安装服务器端框架
 服务器依赖于nodejs，需要安装nodejs的包，首先在根目录下创建package.json文件。
 #### 1)安装http-server模块
 ```
@@ -54,7 +54,7 @@ npm install http-server -save
 * **karma-junit-reporter**: 生成junit报告；
 * **protractor**:E2E测试框架
 
-### 启动服务器
+### 3、启动服务器
 要启动node服务器需要在package.json中配置script节点,dependencies中定义依赖包，在script配置start节点用于启动服务器，test节点的内容会在后面讲解。
 ```json
 "name": "angularjs-test",
@@ -83,8 +83,8 @@ npm install http-server -save
 npm start
 ```
 
-## 开始单元测试
-### 编写功能代码
+## 四、开始单元测试
+### 1、编写功能代码
 在文件js中新建js文件index.js。在index.js中定义congroller,实现简单累加方法add,代码如下:
 ```javascript
 /**
@@ -125,8 +125,9 @@ npm start
 <script src="/js/index.js"></script>
 ```
 启动服务器看到下图效果
+
 ![效果](http://7xlh63.com1.z0.glb.clouddn.com/bfa862850c4b224e77e8e4f89117c657.png)
-### 编写测试代码
+### 2、编写测试代码
 在test文件夹中新建文件index-test.js用于编写index.js的单元测试。
 ```javascript
 'use strict';
@@ -144,7 +145,7 @@ describe('app', function () {
     });
 });
 ```
-### 单元测试配置
+### 3、单元测试配置
 初始化karma配置文件,用于配置karma，执行命令
 ```
 karma init
@@ -220,7 +221,7 @@ module.exports = function (config) {
 ``` json
 "test": "karma start karma.conf.js",
 ```
-### 运行单元测试
+### 4、运行单元测试
 运行命令，执行测试
 ```
 npm test
@@ -229,15 +230,15 @@ npm test
 
 ![测试运行结果](http://7xlh63.com1.z0.glb.clouddn.com/f675c4b60d832e1d407377c62203e40f.png)
 
-### 调试单元测试
+### 5、调试单元测试
 除了运行测试外，很多时候需要调试测试，在karma弹出网页中点击debug,进入http://localhost:9876/debug.html页面，就可以用chrome自带的调试工具调试代码了：
 
 ![debug点击](http://7xlh63.com1.z0.glb.clouddn.com/4c90f7283a25b91e4ec76835d8698127.png)
 
 ![debug code](http://7xlh63.com1.z0.glb.clouddn.com/aa81509c780345df954477bc2fbf6d88.png)
-## E2E测试
+## 五、E2E测试
 e2e或者端到端（end-to-end）或者UI测试是一种测试方法，它用来测试一个应用从头到尾的流程是否和设计时候所想的一样。简而言之，它从一个用户的角度出发，认为整个系统都是一个黑箱，只有UI会暴露给用户。
-### 配置E2E测试
+### 1、配置E2E测试
 新建文件夹e2e-test新建protractor.conf.js文件,用于配置protractor框架，代码如下。
 ```javascript
 exports.config = {
@@ -273,7 +274,7 @@ exports.config = {
 "preprotractor": "npm run update-webdriver",
 "protractor": "protractor e2e-test/protractor.conf.js"
 ```
-### 编写e2e测试脚本
+### 2、编写e2e测试脚本
 设计测试用例：文本框a的值录入1，文本框b录入2，期望结果3
 ```javascript
 describe('index.html', function() {
@@ -293,7 +294,7 @@ describe('index.html', function() {
     });
 });
 ```
-### 执行测试查看测试结果
+### 3、执行测试查看测试结果
 需要执行命名,查看是否更新webdriver(什么是webdriver http://sentsin.com/web/658.html),
 
 **注:安装或更新webdriver需要翻墙，请在webstrom中设置代理地址**。
