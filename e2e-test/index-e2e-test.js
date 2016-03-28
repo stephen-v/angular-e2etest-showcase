@@ -15,6 +15,6 @@ describe('index.html', function() {
         a.sendKeys(1);
         b.sendKeys(2);
         var result = element(by.id('result'));
-        expect(result.getText()).toEqual('3');
+        expect(result.getText()).toEqual('4');
     });
 });
