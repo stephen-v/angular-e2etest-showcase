@@ -293,8 +293,18 @@ describe('index.html', function() {
 ```
 ### 3、执行测试查看测试结果
 需要执行命名,查看是否更新webdriver(什么是webdriver http://sentsin.com/web/658.html),
+手动安装protractor至全局  
+`npm i -g protractor`
 
-**注:安装或更新webdriver需要翻墙，请在webstrom中设置代理地址**。
+**注:安装或更新webdriver需要翻墙，请在webstrom中设置代理地址**。  
+在`webstrom`中切换至`Terminal`窗口，在`Terminal`窗口通过以下方式设置代理:  
+```
+set PROXY=http://localhost:1080
+set HTTP_PROXY=%PROXY%
+set HTTPS_PROXY=%PROXY%
+```  
+代理设置成功后，运行以下命令
+
 ```
 npm run update-webdriver
 ```
