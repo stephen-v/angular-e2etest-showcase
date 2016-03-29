@@ -38,7 +38,7 @@
 ## 二、创建项目
 
 ### 1、webstorm中创建空白web项目
-![空白项目](http://7xlh63.com1.z0.glb.clouddn.com/bef67a6853ce62867604126f123d68aa.png)
+![空白项目](http://7xlh63.com1.z0.glb.clouddn.com/bef67a6853ce62867604126f123d68aa.png/imageView2/2/w/700)
 
 ### 2、创建html、js文件夹
 在项目中创建2个文件夹分别用于存放项目中用到的html、js文件。
@@ -153,7 +153,7 @@ npm start
 ```
 启动服务器看到下图效果
 
-![效果](http://7xlh63.com1.z0.glb.clouddn.com/bfa862850c4b224e77e8e4f89117c657.png)
+![效果](http://7xlh63.com1.z0.glb.clouddn.com/bfa862850c4b224e77e8e4f89117c657.png/imageView2/2/w/700)
 ### 2、编写测试代码
 在test文件夹中新建文件index-test.js用于编写index.js的单元测试。
 ```javascript
@@ -255,14 +255,14 @@ npm test
 ```
 运行结果如下，可以看到通过测试：
 
-![测试运行结果](http://7xlh63.com1.z0.glb.clouddn.com/f675c4b60d832e1d407377c62203e40f.png)
+![测试运行结果](http://7xlh63.com1.z0.glb.clouddn.com/f675c4b60d832e1d407377c62203e40f.png/imageView2/2/w/700)
 
 ### 5、调试单元测试
 除了运行测试外，很多时候需要调试测试，在karma弹出网页中点击debug,进入http://localhost:9876/debug.html页面，就可以用chrome自带的调试工具调试代码了：
 
-![debug点击](http://7xlh63.com1.z0.glb.clouddn.com/4c90f7283a25b91e4ec76835d8698127.png)
+![debug点击](http://7xlh63.com1.z0.glb.clouddn.com/4c90f7283a25b91e4ec76835d8698127.png/imageView2/2/w/700)
 
-![debug code](http://7xlh63.com1.z0.glb.clouddn.com/aa81509c780345df954477bc2fbf6d88.png)
+![debug code](http://7xlh63.com1.z0.glb.clouddn.com/aa81509c780345df954477bc2fbf6d88.png/imageView2/2/w/700)
 ## 五、E2E测试
 e2e或者端到端（end-to-end）或者UI测试是一种测试方法，它用来测试一个应用从头到尾的流程是否和设计时候所想的一样。简而言之，它从一个用户的角度出发，认为整个系统都是一个黑箱，只有UI会暴露给用户。
 ### 1、配置E2E测试
@@ -342,7 +342,7 @@ npm run update-webdriver
 ```
 npm run protractor
 ```
-![自动化ui测试结果](http://7xlh63.com1.z0.glb.clouddn.com/84b941fef69af1c6767156b68f069732.png)
+![自动化ui测试结果](http://7xlh63.com1.z0.glb.clouddn.com/84b941fef69af1c6767156b68f069732.png/imageView2/2/w/700)
 
 ---
 ## 参考资料
