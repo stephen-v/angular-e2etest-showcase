@@ -10,7 +10,7 @@
 	- [安装框架](#安装框架)
 		- [安装前端框架](#安装前端框架)
 			- [1) 安装bower包管理器](#1-安装bower包管理器)
-				- [2) 初始化bower.json文件](#2-初始化bowerjson文件)
+			- [2) 初始化bower.json文件](#2-初始化bowerjson文件)
 			- [3) 安装angular等框架](#3-安装angular等框架)
 		- [安装服务器端框架](#安装服务器端框架)
 			- [1)安装http-server模块](#1安装http-server模块)
@@ -51,7 +51,7 @@
 ```
 npm install bower -save
 ```
-##### 2) 初始化bower.json文件
+#### 2) 初始化bower.json文件
 执行脚本生成bower.json文件，用于管理bower的依赖和配置。
 ```
 bower init
