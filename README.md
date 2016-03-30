@@ -155,6 +155,7 @@ npm start
 <script src="/js/index.js"></script>
 ```
 启动服务器看到下图效果
+
 ![效果](http://7xlh63.com1.z0.glb.clouddn.com/bfa862850c4b224e77e8e4f89117c657.png?imageView2/2/w/700)
 ### 编写测试代码
 在test文件夹中新建文件index-test.js用于编写index.js的单元测试。
@@ -387,4 +388,5 @@ npm run protractor
 [4] karma官方文档 https://karma-runner.github.io/latest/intro/configuration.html
 
 [5] angular单元测试官方文档 https://docs.angularjs.org/guide/unit-testing
+
 
