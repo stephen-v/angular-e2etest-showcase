@@ -6,9 +6,11 @@
     angular.module('app', []).
     controller('indexCtrl', function ($scope) {
         $scope.add = function (a, b) {
-            if(a&&b)
-                return Number(a) + Number(b)
-            return 0;
+            a = Number(a);
+            b = Number(b);
+            if (a && b && !isNaN(a) && !isNaN(b))
+                return a + b;
+            return -1;
         }
     });
 })(window.angular);

@@ -1,63 +1,66 @@
-# angular单元测试与自动化UI测试实践
+# angular单元测试与集成测试实践
 >关于本文：介绍通过karma与jsmine框架对angular开发的应用程序进行单元与E2E测试。
-
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [angular单元测试与自动化UI测试实践](#angular单元测试与自动化ui测试实践)
-	- [一、先决条件](#一先决条件)
-	- [二、创建项目](#二创建项目)
-		- [1、webstorm中创建空白web项目](#1webstorm中创建空白web项目)
-		- [2、创建html、js文件夹](#2创建htmljs文件夹)
-	- [三、安装框架](#三安装框架)
-		- [1、安装前端框架](#1安装前端框架)
+- [angular单元测试与集成测试实践](#angular单元测试与集成测试实践)
+	- [先决条件](#先决条件)
+	- [创建项目](#创建项目)
+		- [webstorm中创建空白web项目](#webstorm中创建空白web项目)
+		- [创建html、js文件夹](#创建htmljs文件夹)
+	- [安装框架](#安装框架)
+		- [安装前端框架](#安装前端框架)
 			- [1) 安装bower包管理器](#1-安装bower包管理器)
-			- [2) 初始化bower.json文件](#2-初始化bowerjson文件)
+				- [2) 初始化bower.json文件](#2-初始化bowerjson文件)
 			- [3) 安装angular等框架](#3-安装angular等框架)
-		- [2、安装服务器端框架](#2安装服务器端框架)
+		- [安装服务器端框架](#安装服务器端框架)
 			- [1)安装http-server模块](#1安装http-server模块)
 			- [2)安装其他模块](#2安装其他模块)
-		- [3、启动服务器](#3启动服务器)
-	- [四、开始单元测试](#四开始单元测试)
-		- [1、编写功能代码](#1编写功能代码)
-		- [2、编写测试代码](#2编写测试代码)
-		- [3、单元测试配置](#3单元测试配置)
-		- [4、运行单元测试](#4运行单元测试)
-		- [5、调试单元测试](#5调试单元测试)
-	- [五、E2E测试](#五e2e测试)
-		- [1、配置E2E测试](#1配置e2e测试)
-		- [2、编写e2e测试脚本](#2编写e2e测试脚本)
-		- [3、执行测试查看测试结果](#3执行测试查看测试结果)
+		- [启动服务器](#启动服务器)
+	- [开始单元测试](#开始单元测试)
+		- [编写功能代码](#编写功能代码)
+		- [编写测试代码](#编写测试代码)
+		- [单元测试配置](#单元测试配置)
+		- [运行单元测试](#运行单元测试)
+		- [调试单元测试](#调试单元测试)
+		- [单元测试覆盖率](#单元测试覆盖率)
+	- [E2E测试](#e2e测试)
+		- [配置E2E测试](#配置e2e测试)
+		- [编写e2e测试脚本](#编写e2e测试脚本)
+		- [执行测试查看测试结果](#执行测试查看测试结果)
 	- [参考资料](#参考资料)
+	- [源码地址 https://github.com/stephen-v/angular-e2etest-showcase](#源码地址-httpsgithubcomstephen-vangular-e2etest-showcase)
 
 <!-- /TOC -->
-
-## 一、先决条件
+## 先决条件
 * nodejs
 * webstorm
 
-## 二、创建项目
+## 创建项目
 
-### 1、webstorm中创建空白web项目
+### webstorm中创建空白web项目
 ![空白项目](http://7xlh63.com1.z0.glb.clouddn.com/bef67a6853ce62867604126f123d68aa.png?imageView2/2/w/700)
 
-### 2、创建html、js文件夹
+### 创建html、js文件夹
 在项目中创建2个文件夹分别用于存放项目中用到的html、js文件。
 
-## 三、安装框架
-### 1、安装前端框架
-项目中所用框架是angularjs,为了安装框架方便可安装bower包管理器。
+## 安装框架
+### 安装前端框架
+项目中的前端框架主要为angularjs相关的框架,为了安装框架方便可安装bower包管理器。
 #### 1) 安装bower包管理器
 在webstorm的terminal中执行脚本
 ```
 npm install bower -save
 ```
-#### 2) 初始化bower.json文件
+##### 2) 初始化bower.json文件
 执行脚本生成bower.json文件，用于管理bower的依赖和配置。
 ```
 bower init
 ```
 #### 3) 安装angular等框架
-angular、angular-mocks框架
+除了项目要用到的angular框架外还需要安装angular-mocks框架
+```
+bower install bootstrap -save
+```
 
 ```
 bower install angular -save
@@ -67,7 +70,7 @@ bower install angular -save
 bower install angular-mocks -save
 ```
 
-### 2、安装服务器端框架
+### 安装服务器端框架
 服务器依赖于nodejs，需要安装nodejs的包，首先在根目录下创建package.json文件。
 #### 1)安装http-server模块
 ```
@@ -81,7 +84,7 @@ npm install http-server -save
 * **karma-junit-reporter**: 生成junit报告；
 * **protractor**:E2E测试框架
 
-### 3、启动服务器
+### 启动服务器
 要启动node服务器需要在package.json中配置script节点,dependencies中定义依赖包，在script配置start节点用于启动服务器，test节点的内容会在后面讲解。
 ```json
 "name": "angularjs-test",
@@ -110,8 +113,8 @@ npm install http-server -save
 npm start
 ```
 
-## 四、开始单元测试
-### 1、编写功能代码
+## 开始单元测试
+### 编写功能代码
 在文件js中新建js文件index.js。在index.js中定义congroller,实现简单累加方法add,代码如下:
 ```javascript
 /**
@@ -152,9 +155,8 @@ npm start
 <script src="/js/index.js"></script>
 ```
 启动服务器看到下图效果
-
 ![效果](http://7xlh63.com1.z0.glb.clouddn.com/bfa862850c4b224e77e8e4f89117c657.png?imageView2/2/w/700)
-### 2、编写测试代码
+### 编写测试代码
 在test文件夹中新建文件index-test.js用于编写index.js的单元测试。
 ```javascript
 'use strict';
@@ -172,7 +174,7 @@ describe('app', function () {
     });
 });
 ```
-### 3、单元测试配置
+### 单元测试配置
 初始化karma配置文件,用于配置karma，执行命令
 ```
 karma init
@@ -248,7 +250,7 @@ module.exports = function (config) {
 ``` json
 "test": "karma start karma.conf.js",
 ```
-### 4、运行单元测试
+### 运行单元测试
 运行命令，执行测试
 ```
 npm test
@@ -257,15 +259,45 @@ npm test
 
 ![测试运行结果](http://7xlh63.com1.z0.glb.clouddn.com/f675c4b60d832e1d407377c62203e40f.png?imageView2/2/w/700)
 
-### 5、调试单元测试
+### 调试单元测试
 除了运行测试外，很多时候需要调试测试，在karma弹出网页中点击debug,进入http://localhost:9876/debug.html页面，就可以用chrome自带的调试工具调试代码了：
 
 ![debug点击](http://7xlh63.com1.z0.glb.clouddn.com/4c90f7283a25b91e4ec76835d8698127.png?imageView2/2/w/700)
 
 ![debug code](http://7xlh63.com1.z0.glb.clouddn.com/aa81509c780345df954477bc2fbf6d88.png?imageView2/2/w/700)
-## 五、E2E测试
+
+### 单元测试覆盖率
+如果需要对单元测试覆盖率进行统计，可以安装karma-coverage并配置karma文件。这样在单元测试完成后，会生成测试覆盖率报告文档。
+```
+npm install karma-coverage -save
+```
+在karma.conf.js文件中加入节点
+``` javascript
+
+// 新增节点用于配置输出文件夹
+coverageReporter: {
+           type: 'html',
+           dir: 'coverage'
+       },
+// 新增节点用于配置需要测试的文件地址（这里是controller地址）
+preprocessors: {'js/*.js': ['coverage']}
+
+// 新增元素'karma-coverage'
+plugins: [
+          'karma-chrome-launcher',
+          'karma-jasmine',
+          'karma-junit-reporter',
+          'karma-coverage',
+      ],
+// 新增元素 coverage
+reporters: ['progress', 'coverage'],
+```
+运行单元测试后在目录中生成coverage文件夹，点击index.html可以查看测试覆盖率。
+
+![测试覆盖率](http://qiniu.xdpie.com/fb0ce841d8781d287d5bc74b49a09091.png?imageView2/2/w/700)
+## E2E测试
 e2e或者端到端（end-to-end）或者UI测试是一种测试方法，它用来测试一个应用从头到尾的流程是否和设计时候所想的一样。简而言之，它从一个用户的角度出发，认为整个系统都是一个黑箱，只有UI会暴露给用户。
-### 1、配置E2E测试
+### 配置E2E测试
 新建文件夹e2e-test新建protractor.conf.js文件,用于配置protractor框架，代码如下。
 ```javascript
 exports.config = {
@@ -301,7 +333,7 @@ exports.config = {
 "preprotractor": "npm run update-webdriver",
 "protractor": "protractor e2e-test/protractor.conf.js"
 ```
-### 2、编写e2e测试脚本
+### 编写e2e测试脚本
 设计测试用例：文本框a的值录入1，文本框b录入2，期望结果3
 ```javascript
 describe('index.html', function() {
@@ -321,7 +353,7 @@ describe('index.html', function() {
     });
 });
 ```
-### 3、执行测试查看测试结果
+### 执行测试查看测试结果
 需要执行命名,查看是否更新webdriver(什么是webdriver http://sentsin.com/web/658.html),
 手动安装protractor至全局  
 `npm i -g protractor`
@@ -354,5 +386,5 @@ npm run protractor
 
 [4] karma官方文档 https://karma-runner.github.io/latest/intro/configuration.html
 
-[5] angular单元测试官方文档
-https://docs.angularjs.org/guide/unit-testing
+[5] angular单元测试官方文档 https://docs.angularjs.org/guide/unit-testing
+
